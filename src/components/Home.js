@@ -1,6 +1,8 @@
 import React from "react";
 import ResturantCards from "./HomeComponents/ResturantCards";
 
+import ExtraPicures from "./HomeComponents/ExtraPictures";
+
 const Home = () => {
   return (
     <>
@@ -11,7 +13,9 @@ const Home = () => {
       <main>
         <ResturantCards />
       </main>
-      <footer></footer>
+      <footer>
+        <ExtraPicures />
+      </footer>
     </>
   );
 };

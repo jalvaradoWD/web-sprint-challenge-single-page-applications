@@ -7,6 +7,7 @@ const ResturantCards = () => {
 
   return (
     <>
+      <h2>Food Delivery in Gotham City</h2>
       {resturantCards.map((card) => (
         <ResturantCard {...card} />
       ))}

@@ -1,11 +1,16 @@
 import React from "react";
 import Home from "./components/Home";
+import NavBar from "./components/NavBar";
+
+import { Route, Switch } from "react-router-dom";
 
 const App = () => {
   return (
     <>
-      <h1>Lambda Eats</h1>
-      <Home />
+      <NavBar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+      </Switch>
     </>
   );
 };
