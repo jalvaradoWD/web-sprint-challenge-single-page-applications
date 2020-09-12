@@ -3,9 +3,11 @@ import ResturantCards from "./HomeComponents/ResturantCards";
 
 import ExtraPicures from "./HomeComponents/ExtraPictures";
 
+import HomeStyles from "../styles/HomeComponents/Home.styles";
+
 const Home = () => {
   return (
-    <>
+    <HomeStyles>
       <header>
         <h1>Your favorite food, deliveres while coding</h1>
         <button>Pizza?</button>
@@ -16,7 +18,7 @@ const Home = () => {
       <footer>
         <ExtraPicures />
       </footer>
-    </>
+    </HomeStyles>
   );
 };
 
