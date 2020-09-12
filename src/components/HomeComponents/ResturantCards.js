@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ResturantDummyData from "../../dummyData/ResturantCards.dummy";
+
 import ResturantCard from "./ResturantCard";
+import ResturantCardsStyles from "../../styles/HomeComponents/ResturantCards.styles";
 
 const ResturantCards = () => {
   const [resturantCards, setResturantCards] = useState(ResturantDummyData);
@@ -8,9 +10,11 @@ const ResturantCards = () => {
   return (
     <>
       <h2>Food Delivery in Gotham City</h2>
-      {resturantCards.map((card) => (
-        <ResturantCard {...card} />
-      ))}
+      <ResturantCardsStyles>
+        {resturantCards.map((card) => (
+          <ResturantCard {...card} />
+        ))}
+      </ResturantCardsStyles>
     </>
   );
 };
