@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Form = () => {
   const [formState, setFormState] = useState({
@@ -8,6 +8,40 @@ const Form = () => {
     specialInstructions: "",
     quantity: 0,
   });
+
+  const onChange = (e) => {
+    e.preventDefault();
+
+    const targetName = e.target.name;
+    const targetValue = e.target.value;
+
+    setFormState({
+      ...formState,
+      [targetName]: targetValue,
+    });
+  };
+
+  const sauceChecked = (e) => {
+    setFormState({ ...formState, sauce: e.target.value });
+  };
+
+  const handleToppings = (e) => {
+    const topping = e.target.value;
+    const includedToppings = formState.toppings;
+
+    if (!formState.toppings.includes(topping)) {
+      setFormState({ ...formState, toppings: [...includedToppings, topping] });
+    } else {
+      setFormState({
+        ...formState,
+        toppings: includedToppings.filter(
+          (appliedTopping) => appliedTopping !== topping
+        ),
+      });
+    }
+  };
+
+  useEffect(() => {}, []);
 
   return (
     <div>
@@ -19,7 +53,10 @@ const Form = () => {
             <h3>Choice of Size</h3>
             <p>Required</p>
           </div>
-          <select name="size" id="size">
+          <select onChange={onChange} name="size" id="size">
+            <option disabled={formState.sauce === "" ? false : true} value="">
+              -- Select an option --
+            </option>
             <option value="small">Small</option>
             <option value="medium">Medium</option>
             <option value="large">Large</option>
@@ -35,16 +72,17 @@ const Form = () => {
           <div>
             <label htmlFor="originalRed">Original Red</label>
             <input
-              value="originalRed"
+              onChange={sauceChecked}
+              defaultValue="originalRed"
               id="originalRed"
               type="radio"
-              npms
               name="sauce"
             />
           </div>
           <div>
             <label htmlFor="garlicRanch">Garlic Ranch</label>
             <input
+              onChange={sauceChecked}
               value="garlicRanch"
               id="garlicRanch"
               type="radio"
@@ -53,11 +91,18 @@ const Form = () => {
           </div>
           <div>
             <label htmlFor="bbqSauce">BBQ Sauce</label>
-            <input value="bbqSauce" id="bbqSauce" type="radio" name="sauce" />
+            <input
+              onChange={sauceChecked}
+              value="bbqSauce"
+              id="bbqSauce"
+              type="radio"
+              name="sauce"
+            />
           </div>
           <div>
             <label htmlFor="spinachAlfredo">Spinach Alfredo</label>
             <input
+              onChange={sauceChecked}
               value="spinachAlfredo"
               id="spinachAlfredo"
               type="radio"
@@ -73,6 +118,7 @@ const Form = () => {
           </div>
           <div>
             <input
+              onChange={handleToppings}
               type="checkbox"
               id="pepperoni"
               name="topping"
@@ -82,6 +128,7 @@ const Form = () => {
           </div>
           <div>
             <input
+              onChange={handleToppings}
               type="checkbox"
               id="sausage"
               name="topping"
@@ -91,6 +138,7 @@ const Form = () => {
           </div>
           <div>
             <input
+              onChange={handleToppings}
               type="checkbox"
               id="canadianBacon"
               name="topping"
@@ -100,6 +148,7 @@ const Form = () => {
           </div>
           <div>
             <input
+              onChange={handleToppings}
               type="checkbox"
               id="spicyItalian"
               name="topping"
@@ -108,11 +157,18 @@ const Form = () => {
             <label htmlFor="spicyItalian">Spicy Italian</label>
           </div>
           <div>
-            <input type="checkbox" id="onions" name="topping" value="onions" />
+            <input
+              onChange={handleToppings}
+              type="checkbox"
+              id="onions"
+              name="topping"
+              value="onions"
+            />
             <label htmlFor="onions">Onions</label>
           </div>
           <div>
             <input
+              onChange={handleToppings}
               type="checkbox"
               id="greenPepper"
               name="greenPepper"
@@ -122,6 +178,7 @@ const Form = () => {
           </div>
           <div>
             <input
+              onChange={handleToppings}
               type="checkbox"
               id="grilledChicken"
               name="grilledChicken"
@@ -134,12 +191,18 @@ const Form = () => {
         <section>
           <div>
             <h3>Special Instructions</h3>
-            <input type="text" name="specialInstructions" />
+            <input onChange={onChange} type="text" name="specialInstructions" />
           </div>
         </section>
 
         <section>
-          <input type="number" name="quantity" min="1" max="5" />
+          <input
+            onChange={onChange}
+            type="number"
+            name="quantity"
+            min="1"
+            max="5"
+          />
         </section>
         <input type="submit" value="Add to Order" />
       </form>
