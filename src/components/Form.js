@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import axios from "axios";
+
 const Form = () => {
   const [formState, setFormState] = useState({
     size: "",
@@ -8,6 +10,14 @@ const Form = () => {
     specialInstructions: "",
     quantity: 0,
   });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("https://reqres.in/api/users", formState)
+      .then((res) => console.log(res.data));
+  };
 
   const onChange = (e) => {
     e.preventDefault();
@@ -45,7 +55,7 @@ const Form = () => {
 
   return (
     <div>
-      <form>
+      <form onSubmit={onSubmit}>
         <h2>Building Your Own Pizza</h2>
 
         <section>
