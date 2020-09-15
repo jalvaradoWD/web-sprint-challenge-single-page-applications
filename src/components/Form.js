@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Form = () => {
+  const [formState, setFormState] = useState({
+    size: "",
+    sauce: "",
+    toppings: [],
+    specialInstructions: "",
+    quantity: 0,
+  });
+
   return (
     <div>
       <form>
@@ -67,7 +75,7 @@ const Form = () => {
             <input
               type="checkbox"
               id="pepperoni"
-              name="pepperoni"
+              name="topping"
               value="pepperoni"
             />
             <label htmlFor="pepperoni">Pepperoni</label>
@@ -76,7 +84,7 @@ const Form = () => {
             <input
               type="checkbox"
               id="sausage"
-              name="sausage"
+              name="topping"
               value="sausage"
             />
             <label htmlFor="sausage">Sausage</label>
@@ -85,7 +93,7 @@ const Form = () => {
             <input
               type="checkbox"
               id="canadianBacon"
-              name="canadianBacon"
+              name="topping"
               value="canadianBacon"
             />
             <label htmlFor="">Canadian Bacon</label>
@@ -94,13 +102,13 @@ const Form = () => {
             <input
               type="checkbox"
               id="spicyItalian"
-              name="spicyItalian"
+              name="topping"
               value="spicyItalian"
             />
             <label htmlFor="spicyItalian">Spicy Italian</label>
           </div>
           <div>
-            <input type="checkbox" id="onions" name="onions" value="v" />
+            <input type="checkbox" id="onions" name="topping" value="onions" />
             <label htmlFor="onions">Onions</label>
           </div>
           <div>
@@ -132,8 +140,8 @@ const Form = () => {
 
         <section>
           <input type="number" name="quantity" min="1" max="5" />
-          <input type="submit" value="Add to Order" />
         </section>
+        <input type="submit" value="Add to Order" />
       </form>
     </div>
   );
