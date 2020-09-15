@@ -1,20 +1,22 @@
 import React from "react";
 
+import NavbarStyles from "../styles/NavBar/Navbar.styles";
+
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <header>
+    <NavbarStyles>
       <h1>Lambda Eats</h1>
       <nav>
-        <Link>
+        <Link to="/">
           <span>Home</span>
         </Link>
-        <Link>
-          <span>Help</span>
+        <Link to="/pizza">
+          <span>Order Now!</span>
         </Link>
       </nav>
-    </header>
+    </NavbarStyles>
   );
 };
 

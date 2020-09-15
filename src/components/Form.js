@@ -30,6 +30,7 @@ const Form = () => {
               value="originalRed"
               id="originalRed"
               type="radio"
+              npms
               name="sauce"
             />
           </div>
